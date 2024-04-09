@@ -89,10 +89,10 @@ volumes:
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
-- name: motioneye-data
+- name: data
   mountPath: "/var/lib/motioneye"
   readOnly: false
-- name: motioneye-config
+- name: config
   mountPath: "/etc/motioneye"
   readOnly: false
 
