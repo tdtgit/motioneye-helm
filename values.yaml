@@ -83,12 +83,14 @@ readinessProbe:
 
 # Additional volumes on the output Deployment definition.
 volumeClaimTemplates:
-- name: motioneye-data
+- metadata:
+    name: motioneye-data
   accessModes: [ "ReadWriteOnce" ]
   resources:
     requests:
       storage: 10Gi
-- name: motioneye-config
+- metadata:
+    name: motioneye-config
   accessModes: [ "ReadWriteOnce" ]
   resources:
     requests:
