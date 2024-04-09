@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/motioneye-project/motioneye:edge
+  repository: ghcr.io/motioneye-project/motioneye
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "edge"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -42,7 +42,7 @@ securityContext: {}
 service:
   type: ClusterIP
   webPort: 80
-  streamPort: 80
+  streamPort: 81
 
 ingress:
   enabled: false
