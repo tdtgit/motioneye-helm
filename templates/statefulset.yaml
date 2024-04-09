@@ -5,9 +5,10 @@ metadata:
   labels:
     {{- include "motioneye.labels" . | nindent 4 }}
 spec:
+  replicas: 1
   volumeClaimTemplates:
   - metadata:
-      name: {{ include "motioneye.fullname" . }}-data
+      name: data
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: {{ .Values.volumes.storageClassName }}
@@ -15,7 +16,7 @@ spec:
         requests:
           storage: {{ .Values.volumes.dataStorageSize }}
   - metadata:
-      name: {{ include "motioneye.fullname" . }}-config
+      name: config
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: {{ .Values.volumes.storageClassName }}
@@ -67,7 +68,6 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- with .Values.volumeClaimTemplates }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
