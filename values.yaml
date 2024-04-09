@@ -41,8 +41,8 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  webPort: 80
-  streamPort: 81
+  webPort: 8765
+  streamPort: 8081
 
 ingress:
   enabled: false
