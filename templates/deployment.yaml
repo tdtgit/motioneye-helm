@@ -39,7 +39,7 @@ spec:
               containerPort: {{ .Values.service.webPort }}
               protocol: TCP
             - name: stream
-              containerPort: {{ .Values.service.webPort }}
+              containerPort: {{ .Values.service.streamPort }}
               protocol: TCP
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
