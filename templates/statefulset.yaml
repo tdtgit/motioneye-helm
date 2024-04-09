@@ -1,12 +1,10 @@
 apiVersion: apps/v1
-kind: Statefulset
+kind: StatefulSet
 metadata:
   name: {{ include "motioneye.fullname" . }}
   labels:
     {{- include "motioneye.labels" . | nindent 4 }}
 spec:
-  replicas: 1
-  revisionHistoryLimit: 0
   selector:
     matchLabels:
       {{- include "motioneye.selectorLabels" . | nindent 6 }}
