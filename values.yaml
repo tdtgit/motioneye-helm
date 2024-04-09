@@ -82,19 +82,10 @@ readinessProbe:
     port: 8765
 
 # Additional volumes on the output Deployment definition.
-volumeClaimTemplates:
-- metadata:
-    name: motioneye-data
-  accessModes: [ "ReadWriteOnce" ]
-  resources:
-    requests:
-      storage: 10Gi
-- metadata:
-    name: motioneye-config
-  accessModes: [ "ReadWriteOnce" ]
-  resources:
-    requests:
-      storage: 10Mi
+volumes:
+  storageClassName: ""
+  configStorageSize: 10Mi
+  dataStorageSize: 10Gi
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
