@@ -84,7 +84,11 @@ readinessProbe:
 # Additional volumes on the output Deployment definition.
 volumes:
 - name: motioneye-data
+  persistentVolumeClaim:
+    claimName: motioneye-data-claim
 - name: motioneye-config
+  persistentVolumeClaim:
+    claimName: motioneye-config-claim
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
