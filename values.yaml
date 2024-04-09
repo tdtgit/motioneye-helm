@@ -82,16 +82,17 @@ readinessProbe:
     port: 8765
 
 # Additional volumes on the output Deployment definition.
-volumes: []
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
+volumes:
+- name: motioneye-data
+- name: motioneye-config
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
 - name: motioneye-data
   mountPath: "/var/lib/motioneye"
+  readOnly: false
+- name: motioneye-config
+  mountPath: "/etc/motioneye"
   readOnly: false
 
 nodeSelector: {}
