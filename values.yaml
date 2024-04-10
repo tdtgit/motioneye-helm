@@ -87,7 +87,7 @@ readinessProbe:
 # Additional volumes on the output Deployment definition.
 volumes:
   storageClassName: ""
-  configStorageSize: 10Mi
+  configStorageSize: 100Mi
   dataStorageSize: 10Gi
 
 nodeSelector: {}
