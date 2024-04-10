@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: {{ include "motioneye.fullname" . }}
   labels:
@@ -28,6 +28,13 @@ spec:
       {{- end }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - name: {{ include "motioneye.fullname" . }}-config
+          persistentVolumeClaim:
+            claimName: {{ include "motioneye.fullname" . }}-config
+        - name: {{ include "motioneye.fullname" . }}-data
+          persistentVolumeClaim:
+            claimName: {{ include "motioneye.fullname" . }}-data
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -50,10 +57,13 @@ spec:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          {{- with .Values.volumeMounts }}
           volumeMounts:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
+            - name: {{ include "motioneye.fullname" . }}-data
+              mountPath: "/var/lib/motioneye"
+              readOnly: false
+            - name: {{ include "motioneye.fullname" . }}-config
+              mountPath: "/etc/motioneye"
+              readOnly: false
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

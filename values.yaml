@@ -90,15 +90,6 @@ volumes:
   configStorageSize: 10Mi
   dataStorageSize: 10Gi
 
-# Additional volumeMounts on the output Deployment definition.
-volumeMounts:
-- name: data
-  mountPath: "/var/lib/motioneye"
-  readOnly: false
-- name: config
-  mountPath: "/etc/motioneye"
-  readOnly: false
-
 nodeSelector: {}
 
 tolerations: []
