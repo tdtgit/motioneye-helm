@@ -6,23 +6,6 @@ metadata:
     {{- include "motioneye.labels" . | nindent 4 }}
 spec:
   replicas: 1
-  volumeClaimTemplates:
-  - metadata:
-      name: data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: {{ .Values.volumes.storageClassName }}
-      resources:
-        requests:
-          storage: {{ .Values.volumes.dataStorageSize }}
-  - metadata:
-      name: config
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: {{ .Values.volumes.storageClassName }}
-      resources:
-        requests:
-          storage: {{ .Values.volumes.configStorageSize }}
   selector:
     matchLabels:
       {{- include "motioneye.selectorLabels" . | nindent 6 }}

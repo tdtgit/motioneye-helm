@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "motioneye.fullname" . }}-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: {{ .Values.volumes.storageClassName }}
+  resources:
+    requests:
+      storage: {{ .Values.volumes.dataStorageSize }}
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "motioneye.fullname" . }}-config
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: {{ .Values.volumes.storageClassName }}
+  resources:
+    requests:
+      storage: {{ .Values.volumes.configStorageSize }}
